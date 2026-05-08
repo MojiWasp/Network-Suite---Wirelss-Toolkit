@@ -22,15 +22,14 @@ echo "start monitor mode"
 sudo airmon-ng start wlan0
 
 echo "start dump"
-sudo airodump-ng wlan0mon
+sudo airodump-ng wlan0mon -w WASP-capture
 echo ""
 
-if [[ $key == "X" || $key == "x" ]] ; then
+elif [[ $key == "X" || $key == "x" ]] ; then
+echo "stopping monitor and restarting network"
 sudo airmon-ng stop wlan0mon
 sudo airmon-ng stop wlan0
 sudo systemctl restart NetworkManager
-
-fi
 
 else
 echo ""
